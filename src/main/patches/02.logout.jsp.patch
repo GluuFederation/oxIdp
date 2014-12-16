@@ -1,0 +1,88 @@
+--- logout.jsp	2013-04-17 11:47:26.000000000 +0000
++++ logout.jsp	2013-04-23 17:00:04.000000000 +0000
+@@ -1,44 +1,40 @@
+-<%@page import="edu.internet2.middleware.shibboleth.idp.session.Session" %>
+-<%@page import="edu.internet2.middleware.shibboleth.idp.session.ServiceInformation" %>
+-<%@page import="edu.internet2.middleware.shibboleth.idp.profile.saml2.SLOProfileHandler" %>
+-<%@page import="org.owasp.esapi.Encoder" %>
+-<%@page import="org.owasp.esapi.ESAPI" %>
+-<html>
+-  <head>
+-    <title>Example Logout Page</title>
+-  </head>
+-
+-  <body>
+-	<img src="<%= request.getContextPath()%>/images/dummylogo.png" alt="Replace or remove this logo"/>
+-    <h1>Example Logout Page</h1>
+-    <p>This logout page is an example and should be customized.</p>
+-
+-    <p>This page is displayed when a logout operation at the Identity Provider completes.</p>
+-    
+-    <p><strong>It does NOT result in the user being logged out of any of the applications he/she
+-    has accessed during a session, with the possible exception of a Service Provider that may have
+-    initiated the logout operation.</strong></p>
+-
+-    <p>If your Identity Provider deployment relies on the built-in Session mechanism for SSO, the
+-    following is a list of Service Provider identifiers tracked by the session that has been terminated:</p>
+-    
+-    <%
+-    Session s = (Session) request.getAttribute(SLOProfileHandler.HTTP_LOGOUT_BINDING_ATTRIBUTE);
+-    if (s != null && !s.getServicesInformation().isEmpty()) {
+-    	Encoder esapi = ESAPI.encoder();
+-    %>
+-
+-		<ul>
+-		<% for (ServiceInformation info : s.getServicesInformation().values()) { %>
+-			<li><%= esapi.encodeForHTML(info.getEntityID()) %></li>
+-		<% } %>
+-		</ul>	
+-
+-	<% } else { %>
+-	
+-		<p>NONE FOUND</p>
+-	
+-	<% } %>
+-
+-  </body>
+-</html>
+\ No newline at end of file
++<%@ page import="edu.internet2.middleware.shibboleth.idp.authn.LoginContext" %>
++<%@ page import="edu.internet2.middleware.shibboleth.idp.authn.Saml2LoginContext" %>
++<%@ page import="edu.internet2.middleware.shibboleth.idp.authn.LoginHandler" %>
++<%@ page import="edu.internet2.middleware.shibboleth.idp.session.*" %>
++<%@ page import="edu.internet2.middleware.shibboleth.idp.util.HttpServletHelper" %>
++<%@ page import="org.opensaml.saml2.metadata.*" %>
++<%@ page import="org.opensaml.util.storage.StorageService" %>
++<%@ page import="org.gluu.oxauth.client.session.SignOutHandler" %>
++
++<%
++Cookie[] ck = request.getCookies();
++   if (ck != null) {
++      for (int i = 0; i < ck.length; i++)
++      {
++            Cookie cc = ck[i];
++                cc.setMaxAge(0);
++                cc.setPath("/idp");
++                response.addCookie(cc);
++        }
++   }
++
++
++String actionURL = SignOutHandler.instance().getOAuthLogoutUrl(request);
++if (actionURL == null) {
++    actionURL = request.getScheme() + "://" + request.getServerName() + "/identity/authentication/finishlogout";
++}
++response.sendRedirect(actionURL);
++%>
++
++<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
++
++<body onload="document.forms[0].submit()">
++        <noscript>
++            <p>
++                <strong>Note:</strong> Since your browser does not support JavaScript,
++                you must press the Continue button once to proceed.
++            </p>
++        </noscript>
++    </body>
++</html>

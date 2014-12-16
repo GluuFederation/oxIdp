@@ -1,0 +1,54 @@
+--- WEB-INF/web.xml	2013-04-17 11:47:26.000000000 +0000
++++ WEB-INF/web.xml	2013-04-23 17:00:04.000000000 +0000
+@@ -11,7 +11,7 @@
+         same named beans in previous files. -->
+     <context-param>
+         <param-name>contextConfigLocation</param-name>
+-        <param-value>file:/opt/shibboleth-idp/conf/internal.xml; file:/opt/shibboleth-idp/conf/service.xml;</param-value>
++        <param-value>file:/opt/idp/conf/internal.xml; file:/opt/idp/conf/service.xml;</param-value>
+     </context-param>
+ 
+     <!-- Spring 2.0 listener used to load up the configuration -->
+@@ -40,6 +40,42 @@
+         <url-pattern>/*</url-pattern>
+     </filter-mapping>
+ 
++    <!-- OAuth client filters -->
++    <filter>
++        <filter-name>OAuth Authentication Filter</filter-name>
++        <filter-class>org.gluu.oxauth.client.authentication.AuthenticationFilter</filter-class>
++    </filter>
++    <filter-mapping>
++        <filter-name>OAuth Authentication Filter</filter-name>
++        <url-pattern>/Authn/RemoteUser</url-pattern>
++    </filter-mapping>
++
++    <filter>
++        <filter-name>OAuth Validation Filter</filter-name>
++        <filter-class>org.gluu.oxauth.client.validation.OAuthValidationFilter</filter-class>
++    </filter>
++    <filter-mapping>
++        <filter-name>OAuth Validation Filter</filter-name>
++        <url-pattern>/Authn/RemoteUser</url-pattern>
++    </filter-mapping>
++
++    <filter>
++        <filter-name>OAuth Principal Provider Filter</filter-name>
++        <filter-class>org.gluu.oxauth.client.util.HttpServletRequestWrapperFilter</filter-class>
++    </filter>
++    <filter-mapping>
++        <filter-name>OAuth Principal Provider Filter</filter-name>
++        <url-pattern>/Authn/RemoteUser</url-pattern>
++    </filter-mapping>
++    <!-- Store the modified session object in the memcached storage service -->
++    <filter>
++       <filter-name>UniMrMemcachedServletFilter</filter-name>
++       <filter-class>unimr.shib2.UniMrMemcachedServletFilter</filter-class>
++    </filter>
++    <filter-mapping>
++       <filter-name>UniMrMemcachedServletFilter</filter-name>
++       <url-pattern>/*</url-pattern>
++    </filter-mapping>
+     <!-- HTTP headers to every response in order to prevent response caching -->
+     <filter>
+         <filter-name>IdPNoCacheFilter</filter-name>
