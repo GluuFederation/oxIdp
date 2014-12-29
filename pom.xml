@@ -6,7 +6,7 @@
     <name>OX IDP</name>
     <url>http://ox.gluu.org</url>
     <packaging>war</packaging>
-    <version>1.7.0.Beta5</version>
+    <version>1.7.0.Beta6</version>
 
     <prerequisites>
         <maven>2.3</maven>
@@ -18,9 +18,9 @@
         <shibboleth.version>2.4.3</shibboleth.version>
         <shibboleth.dist.md5>6016aff730fcd411ebe808c5c1f650bb</shibboleth.dist.md5>
 
-        <oxcore.version>1.7.0.Beta5</oxcore.version>
-        <oxauth.version>1.7.0.Beta5</oxauth.version>
-        <oxtrust.version>1.7.0.Beta5</oxtrust.version>
+        <oxcore.version>1.7.0.Beta6</oxcore.version>
+        <oxauth.version>1.7.0.Beta6</oxauth.version>
+        <oxtrust.version>1.7.0.Beta6</oxtrust.version>
     </properties>
 
     <repositories>
