@@ -21,6 +21,8 @@
         <oxcore.version>3.0.3-SNAPSHOT</oxcore.version>
         <oxauth.version>3.0.3-SNAPSHOT</oxauth.version>
         <oxtrust.version>3.0.3-SNAPSHOT</oxtrust.version>
+
+        <jackson.version>1.9.9</jackson.version>
     </properties>
 
     <repositories>
@@ -315,6 +317,18 @@
 
         <dependency>
             <groupId>org.xdi</groupId>
+            <artifactId>oxLdap</artifactId>
+            <version>${oxcore.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>*</artifactId>
+                    <groupId>*</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.xdi</groupId>
             <artifactId>oxauth-model</artifactId>
             <version>${oxauth.version}</version>
             <exclusions>
@@ -396,6 +410,55 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <dependency>
+            <groupId>com.unboundid</groupId>
+            <artifactId>unboundid-ldapsdk</artifactId>
+            <version>2.3.1</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>*</artifactId>
+                    <groupId>*</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+            <version>1.0</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>*</artifactId>
+                    <groupId>*</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+            <version>${jackson.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>*</artifactId>
+                    <groupId>*</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>${jackson.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>*</artifactId>
+                    <groupId>*</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
         <!--END: OX OpenId Authentication -->
     </dependencies>
 </project>
