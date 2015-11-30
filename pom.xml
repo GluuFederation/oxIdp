@@ -15,8 +15,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <shibboleth.version>2.4.3</shibboleth.version>
-        <shibboleth.dist.md5>6016aff730fcd411ebe808c5c1f650bb</shibboleth.dist.md5>
+        <shibboleth.version>2.4.4</shibboleth.version>
+        <shibboleth.dist.md5>8f23a88646c925042e22a9acca264c07</shibboleth.dist.md5>
 
         <oxcore.version>3.0.3-SNAPSHOT</oxcore.version>
         <oxauth.version>3.0.3-SNAPSHOT</oxauth.version>
@@ -130,7 +130,7 @@
 
                                 <!-- build the war file -->
                                 <war warfile="${shib.basedir}/dist/idp.war" webxml="${shib.basedir}/target/web.xml">
-                                    <lib dir="${shib.basedir}/lib" excludes="servlet-api*.jar,jsp-api*.jar"/>
+                                    <lib dir="${shib.basedir}/lib" excludes="servlet-api*.jar,jsp-api*.jar,commons-collections-3.2.1.jar"/>
                                     <webinf dir="${webapp.dir}/WEB-INF" excludes="web.xml"/>
                                     <fileset dir="${webapp.dir}" excludes="WEB-INF/**"/>
                                 </war>
@@ -218,6 +218,12 @@
     </reporting>
 
     <dependencies>
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>3.2.2</version>
+        </dependency>
+
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
