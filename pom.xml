@@ -15,8 +15,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <shibboleth.version>2.4.3</shibboleth.version>
-        <shibboleth.dist.md5>6016aff730fcd411ebe808c5c1f650bb</shibboleth.dist.md5>
+        <shibboleth.version>2.4.5</shibboleth.version>
+        <shibboleth.dist.md5>aff79d61193ecc2f14191afb03133a7f</shibboleth.dist.md5>
 
         <oxcore.version>2.4.3.Final</oxcore.version>
         <oxauth.version>2.4.3.Final</oxauth.version>
