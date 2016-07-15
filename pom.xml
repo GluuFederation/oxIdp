@@ -18,7 +18,7 @@
         <shibboleth.version>2.4.5</shibboleth.version>
         <shibboleth.dist.md5>aff79d61193ecc2f14191afb03133a7f</shibboleth.dist.md5>
 
-        <oxCore.version>2.4.4.rc1</oxCore.version>
+        <oxcore.version>2.4.4.rc1</oxcore.version>
         <oxauth.version>2.4.4.rc1</oxauth.version>
         <oxtrust.version>2.4.4.rc1</oxtrust.version>
 
