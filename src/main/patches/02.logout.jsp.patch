@@ -70,7 +70,7 @@
 +
 +String actionURL = SignOutHandler.instance().getOAuthLogoutUrl(request);
 +if (actionURL == null) {
-+    actionURL = request.getScheme() + "://" + request.getServerName() + "/identity/authentication/finishlogout";
++    actionURL = SignOutHandler.instance().constructRedirectUrl(request);
 +}
 +response.sendRedirect(actionURL);
 +%>
