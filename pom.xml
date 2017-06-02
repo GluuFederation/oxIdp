@@ -280,7 +280,7 @@
         <dependency>
             <groupId>org.xdi</groupId>
             <artifactId>openid-auth-client</artifactId>
-            <version>${oxtrust.version}</version>
+            <version>${oxauth.version}</version>
             <exclusions>
                 <exclusion>
                     <artifactId>*</artifactId>
